@@ -16,30 +16,35 @@
 #define endl "\n"
 using namespace std;
 
+ll binpow(ll a, ll b){
+	if(b < 0)return 0;
+	ll rs = 1;
+	while(b){
+		if(b&1)rs=rs*a;
+		a=a*a;
+		b>>=1;
+	}
+	return rs;
+}
 
 void solve(){
-	ll a, b;
-	cin >> a >> b;
-	ll ans = abs(a-b)/5;
-	a = abs(a-b)%5;
-	if(a==4)cout<<ans+2;
-	if(a==3)cout<<ans+2;
-	if(a==2)cout<<ans+1;
-	if(a==1)cout<<ans+1;
-	if(a==0)cout<<ans;
+	ll n;
+	cin >> n;
+	ll ans = 0, tans = 0;
+	ans = 2*4*3*binpow(4,2*n-2-(n+1));
+	tans = ((2*n-2-(n-1))-2)*4*3*3*binpow(4,2*n-2-(n+2));
+	cout<<ans+tans;
 }
 
 int main(){
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.precision(20);
-	ll t = 1;
-	cin >> t;
-	while(t--){
-		solve();
-		cout << endl;
-	}
-	cin.get();
-	return 0;
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  cout.precision(20);
+  ll t = 1;
+  //cin >> t;
+  while(t--){
+    solve();
+    cout << endl;
+  }
+  return 0;
 }
-//g++ -Wshadow -Wall -O2 -Wno-unused-result -Wno-psabi

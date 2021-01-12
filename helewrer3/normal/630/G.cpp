@@ -1,11 +1,11 @@
-//g++ -std=c++17 -Wshadow -Wall -O2 -Wno-unused-result -Wno-psabi
+//May the force be with me
 #include "bits/stdc++.h"
 #define f first
 #define s second
 #define inf 1e18
 #define ll long long
 #define mod 1000000007
-#define pb emplace_back
+#define pb push_back
 #define vll vector<long long int>
 #define ull unsigned long long
 #define all(a) a.begin(),a.end()
@@ -13,29 +13,17 @@
 #define sz(x) ((long long int)(x).size())
 #define mll map<long long int, long long int>
 #define pll pair<long long int, long long int>
+#define endl "\n"
 using namespace std;
 
-ll n, k;
-
-void input(){
-	cin >> n >> k;
-}
 
 void solve(){
-	vll a(n);
-	for(auto &it:a)cin>>it;
-	sort(rall(a));
-	ll ans = 0, t = k;
-	for(ll i = 0; i < n-1; i++){
-		while((i+1)*(a[i] - a[i+1]) > t){
-			a[i] -= t;
-			t = k;
-			ans++;
-		}
-		t -= (i+1)*(a[i] - a[i+1]);
-		a[i] = a[i+1];
-	}
-	cout << ans + 1;
+	ll n;
+	cin >> n;
+	ll ans = 1, tans = 1;
+	for(ll i = n+4; i >= n; i--) ans=(ans*i)/((n+5)-i);
+	for(ll i = n+2; i >= n; i--) tans=(tans*i)/((n+3)-i);
+	cout << ans*tans;
 }
 
 int main(){
@@ -45,10 +33,10 @@ int main(){
 	ll t = 1;
 	//cin >> t;
 	while(t--){
-		input();
 		solve();
+		cout << endl;
 	}
-	cout << endl;
 	cin.get();
 	return 0;
 }
+//g++ -Wshadow -Wall -O2 -Wno-unused-result -Wno-psabi

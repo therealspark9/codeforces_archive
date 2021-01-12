@@ -25,9 +25,14 @@ void Input() {
 }
 
 void Solve() {
-	ll alph[26] = {0};
-	for (ll i = 0; i < str.size(); i++)alph[str[i] - 'a']++;
-	for (ll i = 0; i < 26; i++)if (alph[i] % 2)cout << (char)('a' + i);
+	map<char, ll>mp;
+	for (ll i = 0; i < str.size();) {
+		char ch = str[i];
+		ll t = 0;
+		for (i; i < str.size() and str[i] == ch; i++)t++;
+		if (t % 2)mp[ch] = 1;
+	}
+	for (auto it : mp)cout << it.f;
 	cout << endl;
 }
 

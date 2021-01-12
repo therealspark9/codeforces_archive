@@ -31,7 +31,7 @@ void Solve() {
 		cin >> sx >> sy >> ex >> ey;
 		sy--, ey--;
 		ll l = sy / (((sx == 1) ? n : m) / gcd);
-		ll r = ey / (((ey == 1) ? n : m) / gcd);
+		ll r = ey / (((ex == 1) ? n : m) / gcd);
 		if (l == r)cout << "YES\n";
 		else cout << "NO\n";
 	}

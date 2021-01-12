@@ -16,37 +16,44 @@
 #define endl "\n"
 using namespace std;
 
-ll const nax = 1e5;
-vll a[nax];
-vector<pll> b[nax];
 
 void solve(){
-	ll n, m;
-	cin >> n >> m;
-	for(ll i = 0; i < m; i++){
-		ll u, v;
-		cin >> u >> v;
-		a[u].pb(v);
+	ll n;
+	cin >> n;
+	vll a(n);
+	for(auto &it:a)cin>>it;
+	sort(all(a));
+	vll b(2*a[n-1]+1,0), c(2*a[n-1]+1,0), d(2*a[n-1]+1,0), e, f;
+	for(ll i = 0; i < n; i++) for(ll j = i+1; j < n; j++){
+		if(c[a[j]-a[i]] == 0)f.pb(a[j]-a[i]);
+		e.pb(a[j]-a[i]);
+		d[a[j]-a[i]]++;
+		c[a[j]-a[i]]=1;
 	}
-	ll h = 1;
-	for(ll i = 1; i <= n; i++){
-		for(auto it:a[i]){
-			b[i].pb({i, h});
-			b[it].pb({it, h});
-			h++;
+	for(ll i = 1; i < sz(c); i++){
+		if(c[i] != 1)continue;
+		for(auto it:f)b[i+it] += d[i]*d[it];
+	};
+	sort(all(e));
+	ll ans = 0;
+	for(ll i = 0; i < sz(b); i++){
+		if(!b[i])continue;
+		ll l = 0, r = sz(e)-1, midd = -1;
+		while(l<=r){
+			ll m = (l+r)/2;
+			if(e[m]<=i)l=m+1;
+			else r=m-1, midd = m;
 		}
+		if(midd == -1)continue;
+		ans += b[i]*(sz(e)-midd);
 	}
-	for(ll i = 1; i <= n; i++){
-		if(!sz(b[i])){
-			b[i].pb({i, h});
-			h++;
-		}
-	}
-	for(ll i = 1; i <= n; i++){
-		cout << sz(b[i]) << endl;
-		for(auto it:b[i])cout<<it.f<<" "<<it.s<<endl;
-	}
-}
+	double den = n*(n-1), num = ans;
+	den /= 2;
+	num /= den;
+	num /= den;
+	num /= den;
+	cout<<num;
+
 
 int main(){
 	ios_base::sync_with_stdio(false);

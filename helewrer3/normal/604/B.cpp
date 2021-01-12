@@ -27,16 +27,9 @@ void Input() {
 }
 
 void Solve() {
-	ll mx = 0;
-	for (ll i = n - 1; i >= 0; i--) {
-		if (i + 1 == 2 * k) {
-			mx = max(mx, arr[i] + arr[i - 1]);
-			i--;
-			k--;
-			continue;
-		}
-		mx = max(mx, arr[i]);
-		k--;
+	ll mx = arr[n - 1];
+	for (ll i = 0; i < (n - k); i++) {
+		mx = max(mx, arr[i] + arr[2 * (n - k) - i - 1]);
 	}
 	cout << mx;
 }

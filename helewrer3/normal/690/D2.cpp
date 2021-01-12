@@ -4,7 +4,7 @@
 #define s second
 #define inf 1e18
 #define ll long long
-#define mod 1000000007
+#define mod 1000003
 #define pb push_back
 #define vll vector<long long int>
 #define ull unsigned long long
@@ -16,36 +16,38 @@
 #define endl "\n"
 using namespace std;
 
-ll const nax = 1e5;
-vll a[nax];
-vector<pll> b[nax];
+
+ll nax = 2*1e6+5;
+vll f(nax), fi(nax);
+
+ll ncr(ll n, ll r){
+	ll res = fi[n-r]*fi[r]%mod;
+	res = res*f[n]%mod;
+	return res;
+}
+
+ll binpow(ll a, ll b){
+	a%=mod;
+	ll res = 1;
+	while(b){
+		if(b&1)res = res*a%mod;
+		a = a*a%mod;
+		b>>=1;
+	}
+	return res;
+}
 
 void solve(){
-	ll n, m;
-	cin >> n >> m;
-	for(ll i = 0; i < m; i++){
-		ll u, v;
-		cin >> u >> v;
-		a[u].pb(v);
+	f[0] = fi[0] = 1;
+	for(ll i = 1; i < nax; i++){
+		f[i] = i*f[i-1]%mod;
+		fi[i] = binpow(f[i],mod-2);
 	}
-	ll h = 1;
-	for(ll i = 1; i <= n; i++){
-		for(auto it:a[i]){
-			b[i].pb({i, h});
-			b[it].pb({it, h});
-			h++;
-		}
-	}
-	for(ll i = 1; i <= n; i++){
-		if(!sz(b[i])){
-			b[i].pb({i, h});
-			h++;
-		}
-	}
-	for(ll i = 1; i <= n; i++){
-		cout << sz(b[i]) << endl;
-		for(auto it:b[i])cout<<it.f<<" "<<it.s<<endl;
-	}
+	ll n, c;
+	cin >> n >> c;
+	ll ans = 0;
+	for(ll i = 1; i <= n; i++) ans = (ans+ncr(i+c-1,c-1))%mod;
+	cout << ans;
 }
 
 int main(){

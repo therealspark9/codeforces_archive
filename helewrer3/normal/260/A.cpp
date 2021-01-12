@@ -4,17 +4,22 @@ using namespace std;
 
 int main(){
     ll a, b, n;
-    bool flag;
+    string ans = "";
+    bool flag = false;
     cin >> a >> b >> n;
 
     while(n--){
-        flag = false;
-
-        for(ll i = 0; i <= 9; i++){
-            if((a*10 + i)%b == 0){
-                flag = true;
-                a = a*10 + i;
-                break;
+        if(flag){
+            ans += '0';
+        }
+        else{
+            for(ll i = 0; i <= 9; i++){
+                if((a*10 + i)%b == 0){
+                    flag = true;
+                    a = a*10 + i;
+                    ans = to_string(a);
+                    break;
+                }
             }
         }
 
@@ -23,7 +28,7 @@ int main(){
     }
 
     if(flag)
-        cout << a << endl;
+        cout << ans << endl;
     else
         cout << -1 << endl;
 

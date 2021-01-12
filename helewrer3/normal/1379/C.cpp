@@ -34,7 +34,7 @@ void solve(){
 	}
 	sort(all(b), mc);
 	ll ans = 0, su = 0, t = 0;
-	for(ll i = 0; i < sz(b)-1; i++){
+	for(ll i = 0; i < sz(b); i++){
 		if(b[i].s.f == 1){
 			su += b[i].f;
 			t++;

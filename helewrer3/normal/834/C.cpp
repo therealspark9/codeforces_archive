@@ -1,70 +1,38 @@
 /*May the force be with me*/
-#include "bits/stdc++.h"
-#define f first
-#define s second
-#define inf 1e18
-#define ll long long
-#define mod 1000000007
-#define pb push_back
-#define vll vector<long long int>
-#define ull unsigned long long
-#define all(a) a.begin(),a.end()
-#define rall(a) a.rbegin(),a.rend()
-#define sz(x) ((long long int)(x).size())
-#define mll map<long long int, long long int>
-#define pll pair<long long int, long long int>
+#include <cmath>
+#include <cstdio>
+typedef long long ll;
 using namespace std;
 
 ll a, b;
 
 void input(){
-	cin >> a >> b;
+	scanf("%I64d %I64d", &a, &b);
+}
+
+ll cb(ll x){
+	ll l = 0, r = 1000005;
+	while(l <= r){
+		ll mid = l + (r-l)/2;
+		if(mid*mid*mid > x)r=mid-1;
+		else l = mid+1;
+	}
+	return l-1;
 }
 
 void solve(){
-	map<ll, pll> mp;
-	while(a%2 == 0){
-		mp[2].f++;
-		a/=2;
-	}
-	for(ll i = 3; i*i <= a; i+=2){
-		while(a%i == 0){
-			mp[i].f++;
-			a/=i;
-		}
-	}
-	if(a!=1)mp[a].f++;
-	while(b%2 == 0){
-		mp[2].s++;
-		b/=2;
-	}
-	for(ll i = 3; i*i <= b; i+=2){
-		while(b%i == 0){
-			mp[i].s++;
-			b/=i;
-		}
-	}
-	if(b!=1)mp[b].s++;
-	bool g = true;
-	for(auto it:mp){
-		g &= ((it.s.f + it.s.s)%3 == 0);
-		g &= (it.s.f != 0);
-		g &= (it.s.s != 0);
-	}
-	if(g)cout<<"Yes \n";
-	else cout << "No \n";
+	ll x = cb(a*b);
+	if(x*x*x != a*b)puts("No");
+	else if(a%x == 0 and b%x == 0)puts("Yes");
+	else puts("No");
 }
 
 int main(){
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.precision(20);
-	ll t = 1;
-	cin >> t;
+	int t = 1;
+	scanf("%d", &t);
 	while(t--){
 		input();
 		solve();
 	}
-	cin.get();
 	return 0;
 }

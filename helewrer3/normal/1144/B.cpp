@@ -34,7 +34,6 @@ void Solve() {
 		if (a[i] % 2) o.pb(a[i]);
 		else e.pb(a[i]);
 	}
-	sort(all(e)); sort(all(o));
 	ll x = o.size(), y = e.size();
 	ll d = abs(x - y);
 	if (d == 0)cout << 0;

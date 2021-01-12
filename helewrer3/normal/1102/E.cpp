@@ -4,7 +4,7 @@
 #define s second
 #define inf 1e18
 #define ll long long
-#define mod 1000000007
+#define mod 998244353
 #define pb push_back
 #define vll vector<long long int>
 #define ull unsigned long long
@@ -16,30 +16,30 @@
 #define endl "\n"
 using namespace std;
 
-
 void solve(){
-	ll a, b;
-	cin >> a >> b;
-	ll ans = abs(a-b)/5;
-	a = abs(a-b)%5;
-	if(a==4)cout<<ans+2;
-	if(a==3)cout<<ans+2;
-	if(a==2)cout<<ans+1;
-	if(a==1)cout<<ans+1;
-	if(a==0)cout<<ans;
+	ll n;
+	cin >> n;
+	vll a(n);
+	mll b;
+	for(auto &it:a)cin>>it;
+	for(ll i = 0; i < n; i++)b[a[i]] = max(b[a[i]],i);
+	ll ans = 1, l = b[a[0]];
+	for(ll i = 0; i < n; i++){
+		if(l < i)ans = ans*2%mod;
+		l = max(l, b[a[i]]);
+	}
+	cout<<ans;
 }
 
 int main(){
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.precision(20);
-	ll t = 1;
-	cin >> t;
-	while(t--){
-		solve();
-		cout << endl;
-	}
-	cin.get();
-	return 0;
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  cout.precision(20);
+  ll t = 1;
+  //cin >> t;
+  while(t--){
+    solve();
+    cout << endl;
+  }
+  return 0;
 }
-//g++ -Wshadow -Wall -O2 -Wno-unused-result -Wno-psabi

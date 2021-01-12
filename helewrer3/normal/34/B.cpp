@@ -20,7 +20,7 @@ void Solve(){
         ans += arr[i];
         i++, M--;
     }
-    cout << (-ans) << "\n";
+    cout << ans << "\n";
 }
 
 int main(){
