@@ -7,29 +7,29 @@ using namespace std;
 ll N, M;
 vector<ll> arr;
 
-void Input(){
+void Input() {
     cin >> N >> M, arr.clear(), arr.resize(N);
-    for(auto &z:arr)
+    for (auto &z : arr)
         cin >> z;
     sort(arr.begin(), arr.end());
 }
 
-void Solve(){
+void Solve() {
     ll i = 0, ans = 0;
-    while(M and arr[i] <= 0){
+    while (M and arr[i] <= 0) {
         ans += arr[i];
         i++, M--;
     }
     cout << ans << "\n";
 }
 
-int main(){
+int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
     ll T = 1;
     //cin >> T;
-    while(T--){
+    while (T--) {
         Input();
         Solve();
     }

@@ -2,16 +2,15 @@
 #define ll long long
 using namespace std;
 
-int main(){
+int main() {
     ll T;
     cin >> T;
-    while(T--){
+    while (T--) {
         string str;
         cin >> str;
-        if(str.length() <= 10){
+        if (str.length() <= 10) {
             cout << str << endl;
-        }
-        else{
+        } else {
             cout << str[0] << str.length() - 2 << str[str.length() - 1] << endl;
         }
     }

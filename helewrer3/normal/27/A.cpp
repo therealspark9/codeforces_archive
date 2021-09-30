@@ -7,20 +7,19 @@ using namespace std;
 ll n;
 vector<ll> arr;
 
-void Input(){
+void Input() {
     cin >> n;
     arr.resize(n);
-    for(auto &z:arr)
+    for (auto &z : arr)
         cin >> z;
-
 }
 
-void Solve(){
+void Solve() {
     sort(arr.begin(), arr.end());
     ll prev_idx = 0;
 
-    for(ll i = 0; i < n; i++){
-        if(arr[i] > prev_idx + 1){
+    for (ll i = 0; i < n; i++) {
+        if (arr[i] > prev_idx + 1) {
             cout << prev_idx + 1 << endl;
             return;
         }
@@ -31,13 +30,13 @@ void Solve(){
     cout << prev_idx + 1 << endl;
 }
 
-int main(){
+int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
     ll T = 1;
     //cin >> T;
-    while(T--){
+    while (T--) {
         Input();
         Solve();
     }

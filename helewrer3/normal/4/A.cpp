@@ -1,14 +1,13 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 using namespace std;
 
-int main(){
+int main() {
     ll w;
     cin >> w;
-    if(w%2 == 0 && w != 2){
+    if (w % 2 == 0 && w != 2) {
         cout << "YES" << endl;
-    }
-    else{
+    } else {
         cout << "NO" << endl;
     }
 }
